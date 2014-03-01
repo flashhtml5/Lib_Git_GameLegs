@@ -7,14 +7,12 @@ package gamelegs
 	
 	import R2Event.Robert2CommandEvent;
 	
-	import UI.Core.ViewBase;
-	import UI.Core.ViewBaseEvent;
-	
+
 	public class Mediator extends EventDispatcher
 	{
 		protected var evedisp:EventDispatcher;
 		
-		private var _viewbase:DisplayObject;
+		protected var _viewbase:EventDispatcher;
 		
 		public function Mediator()
 		{
@@ -23,7 +21,7 @@ package gamelegs
 		}
 		
 		public function initialize():void{
-			var sp:DisplayObject=_viewbase;
+			var sp:EventDispatcher=_viewbase;
 			sp.addEventListener(Event.REMOVED_FROM_STAGE,onReStage)
 			sp.addEventListener(Event.REMOVED,onRemove)
 		
@@ -82,12 +80,12 @@ package gamelegs
 			GameLegs.evedisp.dispatchEvent(se);
 		}
 
-		public function get viewbase():DisplayObject
+		public function get viewbase():EventDispatcher
 		{
 			return _viewbase;
 		}
 
-		public function set viewbase(value:DisplayObject):void
+		public function set viewbase(value:EventDispatcher):void
 		{
 			_viewbase = value;
 			
@@ -100,7 +98,7 @@ package gamelegs
 		private function regViewEvent():void
 		{
 			// TODO Auto Generated method stub
-			var sp:DisplayObject=_viewbase;
+			var sp:EventDispatcher=_viewbase;
 			
 			sp.addEventListener(Event.ADDED_TO_STAGE,onStage);
 			sp.addEventListener(Event.ADDED,onAdded)
@@ -111,7 +109,7 @@ package gamelegs
 		{
 			// TODO Auto-generated method stub
 			event.stopPropagation();
-			trace(_viewbase.name,"onRemove")
+			trace(_viewbase["name"],"onRemove")
 		}
 		
 		protected function onReStage(event:Event):void
@@ -139,30 +137,13 @@ package gamelegs
 		protected function onStage(event:Event):void
 		{
 			// TODO Auto-generated method stub
-			trace(_viewbase,_viewbase.name,"onStage")
 			
-			if((_viewbase is ViewBase)&&((_viewbase as ViewBase).bContentCreated==false)){
-				
-				var backviewfun:Function=function(e:Event):void{
-					_viewbase.removeEventListener(ViewBaseEvent.CONTENT_CREATION_COMPLETE,backviewfun);
-					
-					initialize();
-				}
-					
-				_viewbase.addEventListener(ViewBaseEvent.CONTENT_CREATION_COMPLETE,backviewfun);
-				
-			}
-			else{
-			
-				initialize();
-			
-			}
 			
 			
 		}
 		
 		private function remViewEvent():void{
-			var sp:DisplayObject=_viewbase;
+			var sp:EventDispatcher=_viewbase;
 			
 			sp.removeEventListener(Event.ADDED_TO_STAGE,onStage);
 			sp.removeEventListener(Event.ADDED,onAdded)
