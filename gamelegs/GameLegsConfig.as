@@ -13,8 +13,6 @@ package gamelegs
 			context=GameLegs.context;
 			dispatcher=GameLegs.evedisp;
 			
-//			trace(GameLegs.context,context);
-			 
 			configure();
 		}
 		 

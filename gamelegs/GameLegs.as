@@ -101,7 +101,41 @@ package gamelegs
 			map_mediator.add(classname,mediatorClass);
 		}
 		
-		
+		/**
+		 *注册或取回mediator 
+		 * @param displayobject
+		 * @return 
+		 * 
+		 */		
+		public static function getStarlingMediator(displayobject:Object):*{
+			
+			var med:*;
+			
+			med=map_displaymediator.getValue(displayobject);
+			
+			if(med)return med;
+			
+			var classname:String=ClassUtils.getShortClassName(displayobject);
+			
+			var classobj:Class=map_mediator.getValue(classname);
+			
+			
+			if(classobj){
+				
+				med=new classobj();
+				
+				
+				injectinto(med);
+				
+				med.viewbase=displayobject;
+				
+				map_displaymediator.add(displayobject,med);
+			}
+			
+			
+			return med;
+			
+		}
 		
 		/**
 		 *注册或取回mediator 
@@ -190,13 +224,13 @@ package gamelegs
 			var saveEventType:String=EventType.toUpperCase();
 			
 			var eventay:Array
-			if(map_command.containsKey(EventType)==false){
+			if(map_command.containsKey(saveEventType)==false){
 				eventay=[];
 				
 				map_command.add(saveEventType,eventay);
 			}
 			else{
-				eventay=map_command.getValue(EventType);
+				eventay=map_command.getValue(saveEventType);
 			}
 			if(eventay.indexOf(CommandClass)==-1){
 				eventay.push(CommandClass);

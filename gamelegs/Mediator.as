@@ -8,9 +8,13 @@ package gamelegs
 	import R2Event.Robert2CommandEvent;
 	
 
-	public class Mediator extends EventDispatcher
+	public class Mediator 
 	{
+		
+		
 		protected var evedisp:EventDispatcher;
+		
+		
 		
 		protected var _viewbase:EventDispatcher;
 		
@@ -90,6 +94,8 @@ package gamelegs
 			_viewbase = value;
 			
 			this["inj_view"]=_viewbase;
+			
+			initialize();
 			
 			regViewEvent();
 			

@@ -24,6 +24,7 @@ package gamelegs
 		
 		public var contextview:ContextView;
 		
+		
 		public function configure(config:*):Context{
 		
 			if(config is Class){
@@ -31,6 +32,8 @@ package gamelegs
 				
 				if(init is GameLegsConfig){
 //					(init as GameLegsConfig).
+					map_Command=init["map_Command"]
+						
 				}
 				
 			}
@@ -42,6 +45,8 @@ package gamelegs
 			
 			return this;
 		}
+		
+		public var map_Command:Function;
 		
 		
 	}
