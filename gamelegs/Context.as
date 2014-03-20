@@ -28,11 +28,11 @@ package gamelegs
 		public function configure(config:*):Context{
 		
 			if(config is Class){
-				var init:Object=new config();
+				var initClass:Object=new config();
 				
-				if(init is GameLegsConfig){
+				if(initClass is GameLegsConfig){
 //					(init as GameLegsConfig).
-					map_Command=init["map_Command"]
+					map_Command=initClass["map_Command"]
 						
 				}
 				
@@ -47,6 +47,8 @@ package gamelegs
 		}
 		
 		public var map_Command:Function;
+		
+		public var map_Mediator:Function;
 		
 		
 	}

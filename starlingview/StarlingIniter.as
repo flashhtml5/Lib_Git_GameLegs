@@ -14,26 +14,26 @@ package starlingview
 		
 		
 		
-		public function StarlingIniter(instage:Stage,backfun:Function)
+		public function StarlingIniter(instage:Stage,starlingcontext:Class,backfun:Function)
 		{
 			super();
 			
-			initStarling(instage);
+			initStarling(instage,starlingcontext);
 			
 			backRootfun=backfun;
 		}
-		
-		
+		 
+		 
 		private var gameinstance:StarlingGameContext;
 		
-		private function initStarling(instage:Stage):void
+		private function initStarling(instage:Stage,starlingcontext:Class):void
 		{
 			// TODO Auto Generated method stub
-			var _starling:Starling = new Starling(StarlingGameContext, instage);
+			var _starling:Starling = new Starling(starlingcontext, instage);
 			_starling.showStats = true;
 			_starling.start();
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED,onRootcreat)
-			
+			 
 		}		
 		
 		/**

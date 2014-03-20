@@ -3,9 +3,9 @@ package starlingview
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
-	public class StarlingGameBase extends Sprite
+	public class StarlingGameSpriteBase extends Sprite
 	{
-		public function StarlingGameBase()
+		public function StarlingGameSpriteBase()
 		{
 			super();
 		}

@@ -11,9 +11,9 @@ package starlingview
 	 * @author zhouhua
 	 * 
 	 */	
-	public class StarlingGameLegsBase extends StarlingGameBase
+	public class StarlingGameLegsSpriteBase extends StarlingGameSpriteBase
 	{
-		public function StarlingGameLegsBase()
+		public function StarlingGameLegsSpriteBase()
 		{
 			super();
 		}

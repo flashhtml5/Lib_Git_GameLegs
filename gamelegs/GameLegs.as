@@ -13,6 +13,7 @@ package gamelegs
 	
 	import gamelegs.utils.ClassUtils;
 	
+	
 
 	public class GameLegs
 	{
@@ -107,7 +108,7 @@ package gamelegs
 		 * @return 
 		 * 
 		 */		
-		public static function getStarlingMediator(displayobject:Object):*{
+		public static function getStarlingMediator(displayobject:Object):MediatorStarlingBase{
 			
 			var med:*;
 			
