@@ -94,10 +94,14 @@ package gamelegs
 			
 		}
 		
-		public static function addMediator(displayClass:Class, mediatorClass:Class):void
+		public static function addMediator(displayClass:Class, mediatorClass:Class,aliasname:String):void
 		{
 			// TODO Auto Generated method stub
 			var classname:String=ClassUtils.getShortClassName(displayClass);
+			
+			if(aliasname!=null){
+				classname+="."+aliasname;
+			}
 			
 			map_mediator.add(classname,mediatorClass);
 		}
@@ -108,17 +112,35 @@ package gamelegs
 		 * @return 
 		 * 
 		 */		
-		public static function getStarlingMediator(displayobject:Object):MediatorStarlingBase{
+		public static function getStarlingMediator(displayobject:Object,aliasname:String=null):MediatorStarlingBase{
 			
 			var med:*;
 			
-			med=map_displaymediator.getValue(displayobject);
+			
+			
+				med=map_displaymediator.getValue(displayobject);
+			
 			
 			if(med)return med;
 			
-			var classname:String=ClassUtils.getShortClassName(displayobject);
+			var classname:String;
+			classname=ClassUtils.getShortClassName(displayobject);
 			
+			if(classname=="SwfMovieClip"){
+				classname="SwfSprite"
+			}
+			else if(classname=="SwfImage"){
+				return null;
+			}
+			
+			if(aliasname==null){
+				
+			}
+			else{
+				classname+="."+aliasname;
+			}
 			var classobj:Class=map_mediator.getValue(classname);
+			
 			
 			
 			if(classobj){

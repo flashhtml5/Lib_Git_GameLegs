@@ -28,6 +28,22 @@ package starlingview
 		}
 		
 		
+		/**
+		 *同时传入对像及名字 方便mediator 
+		 * @param child
+		 * @param name
+		 * @return 
+		 * 
+		 */		
+		public function addChildByName(child:DisplayObject,name:String):DisplayObject{
+		
+			child.name=name;
+			
+			GameLegs.getStarlingMediator(child,name);
+			
+			return super.addChild(child);
+			
+		}
 		
 		
 		

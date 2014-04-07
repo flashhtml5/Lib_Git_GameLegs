@@ -3,11 +3,13 @@ package gamelegs
 	
 	
 	import flash.events.EventDispatcher;
+	import flash.utils.setTimeout;
 	
 	import R2Event.Robert2CommandEvent;
 	
-	
+	import starling.display.DisplayObject;
 	import starling.display.Sprite;
+	import starling.events.Event;
 
 	public class MediatorStarlingBase
 	{
@@ -24,15 +26,22 @@ package gamelegs
 		
 		public function initialize():void{
 			
+			initData();
 			
 			initContextEvent();
 			
 			initViewEvent();
 			
 			
-			afterinitEvent();
+			
 		}
-
+		
+		protected function initData():void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		
 		public function get viewbase():Sprite
 		{
 			return _viewbase;
@@ -56,11 +65,31 @@ package gamelegs
 		public function initViewEvent():void{
 			
 			
+			addViewListener(Event.ADDED_TO_STAGE,onAddToStage);
+			addViewListener(Event.REMOVED_FROM_STAGE,onRemoveStage);
+			
 		}
 		
-		public function afterinitEvent():void{
+		protected function onRemoveStage(e:Event):void
+		{
+			// TODO Auto Generated method stub
+//			trace("onRemoveStage")
+		}
+		
+		protected function onAddToStage(e:Event):void
+		{
+			// TODO Auto Generated method stub
+//			trace("onAddToStage")
+		}
 		
 		
+		
+		public function getViewMediator(childdisp:DisplayObject,aliasname:String=null):MediatorStarlingBase{
+			
+			
+			
+			return GameLegs.getStarlingMediator(childdisp,aliasname);
+			
 		}
 		
 		
@@ -78,11 +107,15 @@ package gamelegs
 			_viewbase.addEventListener(EventType,EventCallFunction);
 		}
 		
-		public function dispEventType(evetype:String,data:Array):void{
+		public function dispEventType(evetype:String,data:Array,delay:int=0):void{
 		
 			var ve:Robert2CommandEvent=new Robert2CommandEvent(evetype,data);
-			
-			evedisp.dispatchEvent(ve);
+			if(delay==0){
+				evedisp.dispatchEvent(ve);
+			}
+			else{
+				setTimeout(evedisp.dispatchEvent,delay,ve);
+			}
 		}
 		
 	}
