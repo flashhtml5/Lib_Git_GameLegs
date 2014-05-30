@@ -3,6 +3,10 @@ Lib_Git_GameLegs
 
 Git_GameLegs
 
+14/05/30
+代码更新 增加mediator 基类
+
+
 14/04/08
 代码更新
 

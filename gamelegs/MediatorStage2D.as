@@ -8,7 +8,7 @@ package gamelegs
 	import R2Event.Robert2CommandEvent;
 	
 
-	public class Mediator 
+	public class MediatorStage2D 
 	{
 		
 		
@@ -18,7 +18,7 @@ package gamelegs
 		
 		protected var _viewbase:EventDispatcher;
 		
-		public function Mediator()
+		public function MediatorStage2D()
 		{
 			
 			evedisp=GameLegs.evedisp;
@@ -115,7 +115,7 @@ package gamelegs
 		{
 			// TODO Auto-generated method stub
 			event.stopPropagation();
-			trace(_viewbase["name"],"onRemove")
+			trace(_viewbase["name"],"onRemove child:",event.target.name)
 		}
 		
 		protected function onReStage(event:Event):void
